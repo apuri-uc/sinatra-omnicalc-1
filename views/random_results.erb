@@ -1,0 +1,26 @@
+<h1>Random Results</h1>
+
+<dl>
+  <dt>
+  Minimum
+  </dt>
+  <dd>
+  <%= params.fetch("min_number") %>
+  </dd>
+
+  <dt>
+  Maximum
+  </dt>
+  <dd>
+  <%= params.fetch("max_number") %>
+  </dd>
+
+  <dt>
+  Square Root
+  </dt>
+  <dd>
+  <%= params.fetch("some_number").to_f * params.fetch("input_number").to_f %>
+  </dd>
+  </dl>
+
+<a href="/rando/new">Pick another random number</a>
