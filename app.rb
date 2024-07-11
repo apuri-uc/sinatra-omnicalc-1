@@ -32,7 +32,19 @@ get("/payment/new") do
 end
 
 get("/payment/results") do
+  @apr = params.fetch("apr_number").to_f
+  @monthly_rate = @apr / 12.0 / 100.0 # APR should be divided by 100 to convert percentage to decimal
   
+  @years = params.fetch("years_number").to_f
+  @n = @years * 12.0
+  @principal = params.fetch("principal_number").to_f
+
+# Correct formula for monthly payment
+@payment = @principal * (@monthly_rate * (1 + @monthly_rate) ** @n) / ((1 + @monthly_rate) ** @n - 1)
+
+@final_apr = @apr.to_fs(:percentage, {:precision => 4})
+@principal_currency = @principal.to_fs(:currency, {:precision => 2})
+@final_payment = @payment.to_fs(:currency, {:precision => 2})
   erb(:payment_results)
 end
 
@@ -42,9 +54,9 @@ get("/random/new") do
 end
 
 get("/random/results") do
-  @min_random = params.fetch("min_number").to_f
+  @min_random = params.fetch("users_number").to_f
 
-  @max_random = params.fetch("max_number").to_f
+  @max_random = params.fetch("users_number").to_f
 
   erb(:random_results)
 end

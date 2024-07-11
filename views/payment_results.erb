@@ -1,0 +1,32 @@
+<h1>Payment Results</h1>
+
+<dl>
+  <dt>
+ APR
+  </dt>
+  <dd>
+  <%= @final_apr %>
+  </dd>
+
+  <dt>
+  Years
+  </dt>
+  <dd>
+  <%= params.fetch("years_number") %>
+  </dd>
+
+  <dt>
+  Principal
+  </dt>
+  <dd>
+  <%= @principal_currency %>
+  </dd>
+
+    <dt>
+  Payment
+  </dt>
+  <dd>
+  <%= @final_payment %>
+  </dd>
+
+<a href="/payment/new">Calculate another payment</a>
